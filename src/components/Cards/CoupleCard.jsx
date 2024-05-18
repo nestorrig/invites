@@ -19,7 +19,6 @@ export function CoupleCard() {
       setClientX(clientX);
       setClientY(clientY);
     });
-
   }, [clientX, clientY]);
 
   useGSAP(
@@ -33,20 +32,6 @@ export function CoupleCard() {
         },
         (context) => {
           let { isDesktop } = context.conditions;
-
-          gsap.to(".reveal-children", {
-            scaleX: 0,
-            transformOrigin: "right",
-            stagger: 0.1,
-            ease: "power3.inOut",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              // markers: true,
-              toggleActions: "play reverse play reverse",
-            },
-          });
           const centerX = window.innerWidth / 2;
           const centerY = window.innerHeight / 2;
 
@@ -55,7 +40,6 @@ export function CoupleCard() {
 
           const rotationX = posY * 20;
           const rotationY = posX * -20;
-
 
           gsap.to(card1Ref.current, {
             rotationX: isDesktop ? rotationX : 0,
@@ -83,8 +67,24 @@ export function CoupleCard() {
         }
       );
     },
-    { scope: containerRef, dependencies: [clientX, clientY]}
+    { scope: containerRef, dependencies: [clientX, clientY] }
   );
+
+  useGSAP(() => {
+    gsap.to(".reveal-children", {
+      scaleX: 0,
+      transformOrigin: "right",
+      stagger: 0.1,
+      ease: "power3.inOut",
+      scrollTrigger: {
+        trigger: "figure",
+        start: "top bottom",
+        end: "bottom top",
+        // markers: true,
+        toggleActions: "play reverse play reverse",
+      },
+    });
+  });
 
   return (
     <div ref={containerRef}>

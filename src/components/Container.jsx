@@ -6,11 +6,11 @@ import { Artists } from "./Artists";
 export function Container() {
   const { isMounted } = useContext(Context);
   return (
-    <div>
-    {/* <div className={isMounted ? "" : "h-svh overflow-hidden"}> */}
+    <div className="bg-100">
+    {/* <div className={`bg-100 ${isMounted ? "" : "h-svh overflow-hidden"}`}> */}
       <Welcome />
       <Artists />
-      <div className="h-svh"></div>
+      <div className="h-screen"></div>
       {/* <Welcome /> */}
     </div>
   );
