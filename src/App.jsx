@@ -1,9 +1,12 @@
-
+import { Loader } from "./components/Loader";
+import { ContextProvider } from "./context/ContextProvider";
+import { Container } from "./components";
 
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+    <ContextProvider>
+      {/* <Loader /> */}
+      <Container />
+    </ContextProvider>
+  );
 }
