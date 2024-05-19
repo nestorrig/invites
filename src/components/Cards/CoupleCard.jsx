@@ -87,12 +87,15 @@ export function CoupleCard() {
   });
 
   return (
-    <div ref={containerRef}>
+    <div
+      className="w-full h-[calc(100svh-220px)] md:h-full absolute bottom-0 md:bottom-auto md:top-0 md:right-0 overflow-hidden"
+      ref={containerRef}
+    >
       <div
         ref={card1Ref}
-        className="md:p-0 w-full  md:w-96 md:absolute top-24 right-10 mb-4"
+        className="w-full h-4/5 md:h-full md:w-3/5 absolute top-0 -right-40 md:top-24 md:right-0"
       >
-        <figure className="w-full md:max-w-96 h-96 relative">
+        <figure className="w-full h-full md:h-72 relative">
           <img
             src={images.couple1}
             alt="Pareja"
@@ -111,9 +114,9 @@ export function CoupleCard() {
       </div>
       <div
         ref={card2Ref}
-        className="md:p-0 w-full  md:w-96 md:absolute top-72 right-32"
+        className="w-full h-4/5 md:h-full md:w-3/5 absolute bottom-0 right-40 md:top-72 md:right-12"
       >
-        <figure className="w-full md:max-w-96 h-72 relative">
+        <figure className="w-full h-full md:h-72 relative bottom-0">
           <img
             src={images.couple2}
             alt="Pareja"

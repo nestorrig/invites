@@ -17,7 +17,7 @@ export function ArtistsText() {
         lazy: false,
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top bottom",
+          start: "90% bottom",
           end: "bottom top",
           // markers: true,
           toggleActions: "play reverse play reverse",
@@ -28,7 +28,10 @@ export function ArtistsText() {
   );
 
   return (
-    <div ref={containerRef} className="relative p-4 md:p-10 mb-10 overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative p-4 md:p-10 mb-10 overflow-hidden"
+    >
       <h2 className="text-4xl md:text-6xl font-semibold text-txt-100">
         Contaremos con grandes eventos
       </h2>
