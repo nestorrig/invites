@@ -5,21 +5,13 @@ import { ScrollTrigger } from "gsap/all";
 import { useRef } from "react";
 
 export function ArtistsCard({ video, title, description }) {
-  const containerRef = useRef();
+  const containerRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
   const matchMediaCard = gsap.matchMedia();
+
   const desktopTl = gsap.timeline({
     defaults: { ease: "power2.out" },
     paused: true,
-  });
-  const mobileTl = gsap.timeline({
-    defaults: { ease: "power2.out" },
-    scrollTrigger: {
-      trigger: containerRef.current,
-      start: "top 50%",
-      end: "50% top",
-      toggleActions: "play reverse play reverse",
-    },
   });
 
   useGSAP(
@@ -33,23 +25,39 @@ export function ArtistsCard({ video, title, description }) {
         (context) => {
           let { isDesktop } = context.conditions;
 
+          if (isDesktop) return;
+          if (!containerRef.current) return;
+
+          const mobileTl = gsap.timeline({
+            defaults: { ease: "power2.out" },
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "10% 50%",
+              end: "70% top",
+              // markers: true,
+              toggleActions: "play reverse play reverse",
+            },
+          });
+
           const titulo = containerRef.current.querySelector("h3");
           const parrafo = containerRef.current.querySelector("p");
           const fade = containerRef.current.querySelector(".fade");
 
-          if (isDesktop) return;
+          gsap.set(titulo, { y: 100, opacity: 0 });
+          gsap.set(parrafo, { y: 100, opacity: 0 });
+          gsap.set(fade, { opacity: 0, rotateX: 180 });
 
           mobileTl
-            .from(titulo, {
-              y: 100,
-              opacity: 0,
+            .to(titulo, {
+              y: 0,
+              opacity: 1,
               duration: 0.5,
             })
-            .from(
+            .to(
               parrafo,
               {
-                y: 100,
-                opacity: 0,
+                y: 0,
+                opacity: 1,
                 duration: 0.5,
               },
               "-=0.3"
@@ -57,8 +65,7 @@ export function ArtistsCard({ video, title, description }) {
             .to(
               fade,
               {
-                background:
-                  "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)",
+                opacity: 1,
               },
               "-=0.3"
             );
@@ -85,15 +92,19 @@ export function ArtistsCard({ video, title, description }) {
           if (!isDesktop) return;
 
           desktopTl
-            .to(fade, {
-              background:
-                "linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0) 100%)",
-              duration: 0.5,
-            })
+            .fromTo(
+              fade,
+              { opacity: 0 },
+              {
+                opacity: 1,
+                duration: 0.5,
+              }
+            )
             .fromTo(
               titulo,
               {
                 y: 10,
+                opacity: 0,
               },
               {
                 y: 0,
@@ -105,6 +116,7 @@ export function ArtistsCard({ video, title, description }) {
             .fromTo(
               parrafo,
               {
+                opacity: 0,
                 y: 10,
               },
               {
@@ -149,12 +161,12 @@ export function ArtistsCard({ video, title, description }) {
         loop
         className="w-full h-full object-cover object-center"
       ></video>
-      <div className="fade absolute bottom-0 left-0 h-full w-full"></div>
+      <div className="fade absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-transparent to-black"></div>
       <div className="absolute p-4 top-0 flex flex-col justify-end lg:justify-start gap-4 h-full">
-        <h3 className="text-4xl lg:text-6xl font-semibold text-txt-100 lg:opacity-0">
+        <h3 className="text-4xl lg:text-6xl font-semibold text-txt-100">
           {title}
         </h3>
-        <p className="text-txt-100 text-xl lg:text-xl leading-normal lg:opacity-0">
+        <p className="text-txt-100 text-xl lg:text-xl leading-normal">
           {description}
         </p>
       </div>

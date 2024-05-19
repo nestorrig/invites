@@ -24,18 +24,17 @@ export function Artists() {
             gsap.set("video", {
               clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
             });
-            gsap
-              .to("video", {
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-                duration: 1.5,
-                stagger: 0.2,
-                scrollTrigger: {
-                  trigger: "video",
-                  start: "top bottom",
-                  end: "bottom top",
-                  toggleActions: "play reverse play reverse",
-                },
-              })
+            gsap.to("video", {
+              clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              duration: 1.5,
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: "video",
+                start: "top bottom",
+                end: "bottom top",
+                toggleActions: "play reverse play reverse",
+              },
+            });
           }
         }
       );
@@ -45,7 +44,10 @@ export function Artists() {
   return (
     <div className="w-full min-h-screen relative mt-10 md:mt-40">
       <ArtistsText />
-      <div ref={containerRef} className="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-20 lg:p-10">
+      <div
+        ref={containerRef}
+        className="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-20 lg:p-10"
+      >
         <ArtistsCard
           video={video1}
           title="Dueto Brenda & Pablo"
@@ -54,7 +56,8 @@ export function Artists() {
         <ArtistsCard
           video={video2}
           title="Payaso Manzanitas"
-          description="lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit ametl amet lorem ipsum dolor" />
+          description="lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit ametl amet lorem ipsum dolor"
+        />
         <ArtistsCard
           video={video3}
           title="Sonido Descalabrado"
