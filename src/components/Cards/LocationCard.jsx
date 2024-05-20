@@ -8,19 +8,25 @@ export function LocationCard() {
   useGSAP(
     () => {
       if (!containerRef.current) return;
-      gsap.to(".reveal-children", {
-        scaleY: 0,
-        transformOrigin: "bottom",
-        duration: 1.5,
-        stagger: 0.3,
-        delay: 0.5,
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" },
         scrollTrigger: {
-          trigger: ".reveal-children",
+          trigger: containerRef.current,
           start: "top bottom",
           end: "bottom top",
           // markers: true,
           toggleActions: "play reverse play reverse",
         },
+      });
+
+      tl.to(".reveal-children", {
+        scaleY: 0,
+        transformOrigin: "bottom",
+        duration: 1.5,
+        stagger: 0.3,
+        delay: 0.5,
+      }).to("#container", {
+        visibility: "hidden",
       });
     },
     { scope: containerRef }
@@ -39,7 +45,7 @@ export function LocationCard() {
         className="w-full h-full grayscale contrast-[83%] invert-[92%] focus:border-0 border-0"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
-      <div className="absolute w-full h-full top-0 flex">
+      <div id="container" className="absolute w-full h-full top-0 flex">
         <div id="child1" className="reveal-children bg-100 w-full h-full"></div>
         <div className="reveal-children bg-100 w-full h-full"></div>
         <div className="reveal-children bg-100 w-full h-full"></div>
