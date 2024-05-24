@@ -42,7 +42,7 @@ export function LocationCard() {
         width="600"
         height="450"
         loading="lazy"
-        className="w-full h-full grayscale contrast-[83%] invert-[92%] focus:border-0 border-0"
+        className="w-full h-full brightness-75 focus:border-0 border-0"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
       <div id="container" className="absolute w-full h-full top-0 flex">

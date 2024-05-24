@@ -14,6 +14,7 @@ export function LocationText() {
         x: -100,
         opacity: 0,
         stagger: 0.03,
+        color: "#FFD700",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "90% bottom",
@@ -56,7 +57,7 @@ export function LocationText() {
         Aqui te esperamos, no faltes.
       </h2>
       <button
-        className="text-txt-200 cursor-pointer underline select-none"
+        className="text-txt-200 cursor-pointer underline select-none hover:text-primary-200 active:text-primary-300"
         onClick={copyDirection}
       >
         copiar direccion

@@ -6,7 +6,7 @@ import { Context } from "../context/ContextProvider";
 import { Earphones } from "./icons";
 
 export function Loader() {
-  const { loaded, setLoaded, setIsMounted } = useContext(Context);
+  const { loaded, setLoaded, setIsMounted, loading } = useContext(Context);
   const textRef = useRef();
   const buttonRef = useRef();
   const containerRef = useRef();
@@ -17,11 +17,11 @@ export function Loader() {
   });
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
+    if (Object.values(loading).every((value) => value === true)) {
       setLoaded(true);
-    }, 4000);
-    return () => clearTimeout(timeoutId);
-  }, [setLoaded]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
 
   useGSAP(
     (context, contextSafe) => {
@@ -72,7 +72,8 @@ export function Loader() {
         })
         .to(containerRef.current, {
           autoAlpha: 0,
-        }).eventCallback("onComplete", () => {
+        })
+        .eventCallback("onComplete", () => {
           setIsMounted(true);
         });
 

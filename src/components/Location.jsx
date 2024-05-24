@@ -3,7 +3,7 @@ import { LocationText } from "./texts";
 
 export function Location() {
   return (
-    <div className="w-full min-h-svh bg-100 relative flex flex-col justify-between">
+    <div className="w-full min-h-svh bg-100 relative flex flex-col justify-between pb-10">
       <LocationText />
       <LocationCard />
     </div>

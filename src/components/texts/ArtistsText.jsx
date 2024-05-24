@@ -15,6 +15,7 @@ export function ArtistsText() {
         opacity: 0,
         stagger: 0.02,
         lazy: false,
+        color: "#FFD700",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "90% bottom",
